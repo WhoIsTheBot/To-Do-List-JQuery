@@ -9,6 +9,19 @@ const $list = $('#todo-list')
 const $itemCountSpan = $('#item-count')
 const $uncheckedCountSpan = $('#unchecked-count')
 
+function updateUncheckedCount() {
+  const uncheckedItems = $list.find(`.${classNames.TODO_CHECKBOX}:not(:checked)`).length
+  $uncheckedCountSpan.text(uncheckedItems)
+}
+
+function updateCounts() {
+  const items = $list.children().length
+  const uncheckedItems = $list.find(`.${classNames.TODO_CHECKBOX}:not(:checked)`).length
+
+  $itemCountSpan.text(items)
+  $uncheckedCountSpan.text(uncheckedItems)
+}
+
 function newTodo() {
   const todoText = prompt("Enter a new TODO:") || "New TODO"
   const $todoContainer = $('<li>').addClass(classNames.TODO_ITEM)
@@ -39,16 +52,3 @@ function newTodo() {
 }
 
 
-
-function updateCounts() {
-  const items = $list.children().length
-  const uncheckedItems = $list.find(`.${classNames.TODO_CHECKBOX}:not(:checked)`).length
-
-  $itemCountSpan.text(items)
-  $uncheckedCountSpan.text(uncheckedItems)
-}
-
-function updateUncheckedCount() {
-  const uncheckedItems = $list.find(`.${classNames.TODO_CHECKBOX}:not(:checked)`).length
-  $uncheckedCountSpan.text(uncheckedItems)
-}
